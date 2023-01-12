@@ -2,7 +2,7 @@ import { faCannabis, faListUl } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 
-import AddRunModal from './add-run-modal';
+import AddRunModal from './modals/add-run-modal';
 import ProfileImage from './profile-image';
 
 const AppBar = () => {
@@ -20,6 +20,7 @@ const AppBar = () => {
           <ProfileImage className="aspect-square h-full" />
         </div>
       </div>
+      <div className="h-28" />
     </>
   );
 };

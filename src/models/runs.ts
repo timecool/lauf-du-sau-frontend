@@ -4,6 +4,11 @@ export interface IUserRuns extends IUser {
   runs: IRun[];
 }
 
+export enum ERunStatus {
+  ACTIVATE,
+  VERIFY,
+  DECLINE,
+}
 export interface IRun {
   uuid?: string;
   create_at?: Date;
@@ -13,6 +18,4 @@ export interface IRun {
   status: number;
   time?: number;
   url?: string;
-  image_url?: string;
-  runTime?: number;
 }
