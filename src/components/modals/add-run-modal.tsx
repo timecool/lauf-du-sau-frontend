@@ -105,14 +105,16 @@ const AddRunModal = (props: IProps) => {
         <InputWithDescription
           description="km"
           onChange={(e) => setDistance(e.target.value)}
-          label="Duration"
+          label="Distance"
+          value={distance}
           type="number"
         />
         <InputWithDescription
           description="h"
           onChange={(e) => setDuration(e.target.value)}
-          label="Distance"
+          label="Duration"
           type="number"
+          value={duration}
         />
       </div>
 
@@ -122,6 +124,7 @@ const AddRunModal = (props: IProps) => {
           className="w-full rounded-md border bg-gray-100 p-3 "
           type="date"
           placeholder="Date"
+          value={date}
           defaultValue={dayjs().format('YYYY-MM-DD')}
           onChange={(e) => setDate(e.target.value)}
         />

@@ -2,7 +2,7 @@ import styles from '@/styles/loading.module.scss';
 
 const Loading = () => {
   return (
-    <div className="relative h-screen w-screen overflow-hidden bg-black">
+    <div className="relative h-screen w-screen overflow-hidden ">
       <div id={styles.load}>
         <div>G</div>
         <div>N</div>

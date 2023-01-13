@@ -84,7 +84,7 @@ const Index = () => {
               'Sign Up'
             )}
           </button>
-          <Link href="/sign-up" className="text-center text-blue-default">
+          <Link href="/" className="text-center text-blue-default">
             Sign In
           </Link>
         </div>
