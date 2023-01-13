@@ -18,7 +18,7 @@ const Index = () => {
 
   return (
     <div>
-      <div className="container mx-auto grid px-2 md:px-0">
+      <div className="container mx-auto grid px-2 pt-12 md:px-0">
         {map(users, (user) => (
           <AdminUserRun key={user.uuid} user={user} />
         ))}

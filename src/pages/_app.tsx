@@ -19,7 +19,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   useEffect(() => {
     isAuth();
   }, []);
-  if (userLoad) <Loading />;
+  if (userLoad) return <Loading />;
   return (
     <div className="relative min-h-[100vh]">
       <Seo />

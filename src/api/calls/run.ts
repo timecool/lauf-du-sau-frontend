@@ -11,7 +11,7 @@ export const createRun = async (
   if (isEmpty(file) || isEmpty(time) || isEmpty(distance) || isEmpty(date)) {
     return 'Please set all fields';
   }
-  console.log('url');
+
   try {
     const formData = new FormData();
     formData.append('file', file);

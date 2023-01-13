@@ -9,4 +9,5 @@ export interface IUser {
   username: string;
   goal: number;
   image_url: string;
+  role: string;
 }

@@ -1,18 +1,17 @@
-import { useAuthStore } from '@/store/auth';
-
 interface IProps {
   className: string;
+  name: string;
+  src?: string;
 }
 
 const ProfileImage = (props: IProps) => {
-  const user = useAuthStore((state) => state.user);
+  const { className, name, src } = props;
 
   return (
     <img
-      {...props}
-      src={
-        user?.image_url || `https://api.multiavatar.com/${user?.username}.svg`
-      }
+      className={`${className} aspect-square object-cover`}
+      src={src || `https://api.multiavatar.com/${name}.svg`}
+      alt={`Profile Image ${name}`}
     />
   );
 };
