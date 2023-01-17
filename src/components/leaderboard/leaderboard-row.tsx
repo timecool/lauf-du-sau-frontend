@@ -13,19 +13,18 @@ const LeaderboardRow = (props: IProps) => {
   const { user, index, boardSize } = props;
   return (
     <div
-      key={user.uuid}
       className={`flex items-center justify-between gap-5 ${
         isEqual(boardSize, index) ? '' : 'border-b'
       } py-3`}
     >
       <div className="flex gap-5">
         <ProfileImage
-          className="h-12"
-          name={user.username}
-          src={user.image_url}
+          className="h-12 rounded-full"
+          name={user.user.username}
+          src={user.user.image_url}
         />
         <div>
-          <div className="font-bold">{user.username}</div>
+          <div className="font-bold">{user.user.username}</div>
           <div>Run a total of {user.total} km</div>
         </div>
       </div>

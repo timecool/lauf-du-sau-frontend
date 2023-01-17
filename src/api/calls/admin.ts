@@ -1,14 +1,16 @@
 import type { AxiosResponse } from 'axios';
 import { isEmpty, isEqual } from 'lodash';
 
-import type { IUserRuns } from '@/models/runs';
-import { ERunStatus } from '@/models/runs';
+import type { IRunResponse } from '@/models/run';
+import { ERunStatus } from '@/models/run';
 
 import { api } from '../api-client';
 
 export const runForVerify = async () => {
   try {
-    const response: AxiosResponse<IUserRuns[]> = await api.get('/runs/verify');
+    const response: AxiosResponse<IRunResponse[]> = await api.get(
+      '/admin/runs/verify'
+    );
     return response.data;
   } catch (error: any) {
     return undefined;
@@ -25,7 +27,7 @@ export const runStatusChange = async (
   }
 
   try {
-    await api.patch(`/user/run/${uuid}/status`, { status, message });
+    await api.patch(`/admin/run/${uuid}/status`, { status, message });
     return '';
   } catch (error: any) {
     if (!isEmpty(error?.response?.data?.error))

@@ -4,7 +4,7 @@ export interface IUserResponse extends IResponse {
   user?: IUser;
 }
 export interface IUser {
-  uuid: string;
+  id: string;
   email: string;
   username: string;
   goal: number;

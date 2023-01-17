@@ -44,11 +44,13 @@ const AppBar = () => {
             onClick={() => setModalOpen(!modalOpen)}
             icon={faCannabis}
           />
-          <ProfileImage
-            src={user.image_url}
-            name={user.username}
-            className="aspect-square h-full"
-          />
+          <Link href={'/profile'}>
+            <ProfileImage
+              src={user.image_url}
+              name={user.username}
+              className="h-9 rounded-full"
+            />
+          </Link>
         </div>
       </div>
 

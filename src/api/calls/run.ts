@@ -1,4 +1,7 @@
+import type { AxiosResponse } from 'axios';
 import { isEmpty } from 'lodash';
+
+import type { IRun } from '@/models/run';
 
 import { api } from '../api-client';
 
@@ -30,4 +33,24 @@ export const createRun = async (
     return 'something is wrong :D';
   }
   return '';
+};
+
+export const getMyRuns = async (month?: string) => {
+  try {
+    const response: AxiosResponse<IRun[]> = await api.get('/user/runs', {
+      params: { month },
+    });
+    return response.data;
+  } catch (error: any) {
+    return undefined;
+  }
+};
+
+export const deleteRun = async (id: string) => {
+  try {
+    await api.delete(`/user/run/${id}`);
+    return true;
+  } catch (error: any) {
+    return false;
+  }
 };

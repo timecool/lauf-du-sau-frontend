@@ -1,7 +1,6 @@
+import type { IUser } from './user';
+
 export interface ILeaderboardUser {
-  uuid: string;
-  email: string;
-  username: string;
+  user: IUser;
   total: number;
-  image_url: string;
 }

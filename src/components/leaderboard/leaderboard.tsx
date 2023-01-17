@@ -25,16 +25,25 @@ const Leaderboard = (props: IProps) => {
   }, []);
   const boardSize = size(leaderboard) - 1;
   return (
-    <div className="rounded-lg border border-black px-8 py-3">
+    <div
+      className={`relative ${
+        props.isSlice ? '' : 'h-[70vh]'
+      } overflow-x-auto rounded-lg border border-black px-8 py-3 text-black`}
+    >
       <div className="text-xl font-bold">{props.title}</div>
       {map(leaderboard, (user, i) => (
         <LeaderboardRow
-          key={user.uuid}
+          key={user.user.id}
           boardSize={boardSize}
           user={user}
           index={i}
         />
       ))}
+      {isEmpty(leaderboard) && (
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          No Runs found
+        </div>
+      )}
     </div>
   );
 };

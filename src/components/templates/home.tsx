@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
 import Leaderboard from '../leaderboard/leaderboard';
+import NewRuns from '../new-runs';
 
 const Home = () => {
   return (
@@ -10,6 +11,8 @@ const Home = () => {
         <div className="text-sm">Show more</div>
       </Link>
       <Leaderboard isSlice />
+      <div className="pt-5" />
+      <NewRuns />
     </div>
   );
 };
