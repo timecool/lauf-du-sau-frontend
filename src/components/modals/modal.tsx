@@ -23,13 +23,16 @@ const Modal = (props: IProps) => {
       <div
         className={`${style2} fixed left-0 z-20 h-[82vh] w-full overflow-x-auto rounded-t-lg bg-white p-4 transition-all ease-in-out `}
       >
-        <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-bold">{title}</h2>
-          <FontAwesomeIcon
-            onClick={setClose}
-            className="h-6 cursor-pointer text-xl font-bold"
-            icon={faX}
-          />
+        <div className="relative flex w-full flex-col justify-center gap-3 ">
+          <span className="flex w-full items-center">
+            <h2 className="text-2xl font-bold">{title}</h2>
+            <FontAwesomeIcon
+              onClick={setClose}
+              className="absolute right-0 h-full cursor-pointer  text-xl font-bold"
+              icon={faX}
+            />
+          </span>
+          <hr className="w-full" />
         </div>
         {children}
       </div>

@@ -36,7 +36,7 @@ const AppBar = () => {
       )}
       <AddRunModal open={modalOpen} setOpen={setModalOpen}></AddRunModal>
       <div className="fixed bottom-0 z-20 w-full pb-safe">
-        <div className="flex h-20 grid-cols-3 flex-row items-center justify-between border-t-2 border-black bg-white px-10 py-6 text-2xl  sm:px-4">
+        <div className="flex h-16 grid-cols-3 flex-row items-center justify-between border-t border-black/25 bg-white/75 px-10  py-6 text-2xl text-appBar-icons-disabled drop-shadow-appBar backdrop-blur-lg sm:px-4">
           <Link href={'/'}>
             <FontAwesomeIcon icon={faListUl} />
           </Link>

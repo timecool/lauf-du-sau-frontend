@@ -15,14 +15,15 @@ const LeaderboardRow = (props: IProps) => {
     <div
       className={`flex items-center justify-between gap-5 ${
         isEqual(boardSize, index) ? '' : 'border-b'
-      } py-3`}
+      }`}
     >
-      <div className="flex gap-5">
+      <div className="flex flex-row items-center gap-5">
         <ProfileImage
           className="h-12 rounded-full"
           name={user.user.username}
           src={user.user.image_url}
         />
+        <div className="h-10 w-px bg-black/10" />
         <div>
           <div className="font-bold">{user.user.username}</div>
           <div>Run a total of {user.total} km</div>

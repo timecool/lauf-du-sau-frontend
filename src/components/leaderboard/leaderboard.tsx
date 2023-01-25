@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { getLeaderboard } from '@/api/calls/statistics';
 import type { ILeaderboardUser } from '@/models/leaderboard';
 
+import Panel from '../panel';
 import LeaderboardRow from './leaderboard-row';
 
 interface IProps {
@@ -25,11 +26,7 @@ const Leaderboard = (props: IProps) => {
   }, []);
   const boardSize = size(leaderboard) - 1;
   return (
-    <div
-      className={`relative ${
-        props.isSlice ? '' : 'h-[70vh]'
-      } overflow-x-auto rounded-lg border border-black px-8 py-3 text-black`}
-    >
+    <Panel>
       <div className="text-xl font-bold">{props.title}</div>
       {map(leaderboard, (user, i) => (
         <LeaderboardRow
@@ -44,7 +41,7 @@ const Leaderboard = (props: IProps) => {
           No Runs found
         </div>
       )}
-    </div>
+    </Panel>
   );
 };
 
