@@ -1,12 +1,12 @@
 import { faCircleXmark, faImage } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import dayjs from 'dayjs';
-import { first, isEmpty } from 'lodash';
+import { first, isEmpty, isEqual } from 'lodash';
 import { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 
-import { createRun, deleteRun } from '@/api/calls/run';
-import type { IRun } from '@/models/run';
+import { deleteRun, updateRun } from '@/api/calls/run';
+import type { IRun, IUpdateRun } from '@/models/run';
 
 import InputWithDescription from '../input-with-description';
 import Modal from './modal';
@@ -17,13 +17,15 @@ interface IProps {
 }
 const EditRunModal = (props: IProps) => {
   const { close, run } = props;
+  const [updateImage, setUpdateImage] = useState(false);
   const [load, setLoad] = useState(false);
   const [distance, setDistance] = useState(`${run.distance}`);
   const [date, setDate] = useState(dayjs(run.date).format('YYYY-MM-DD'));
   const [duration, setDuration] = useState(`${run.time}`);
-  const [fileUrl, setFileUrl] = useState(run.url);
+  const [fileUrl, setFileUrl] = useState('');
   const [file, setFile] = useState<File | undefined>();
   const [error, setError] = useState('');
+
   const onDrop = useCallback((acceptedFiles: any) => {
     const fileZone: File | undefined = first(acceptedFiles);
     if (isEmpty(fileZone)) return;
@@ -32,9 +34,16 @@ const EditRunModal = (props: IProps) => {
     setFile(fileZone);
   }, []);
 
-  const submitRun = async () => {
+  const updateRunOnClick = async () => {
     setLoad(true);
-    const errorMessage = await createRun(file, duration, distance, date);
+    const runUpdate: IUpdateRun = {};
+
+    if (!isEmpty(file)) runUpdate.file = file;
+    if (!isEqual(run.date, new Date(date))) runUpdate.date = date;
+    if (!isEqual(run.time, duration)) runUpdate.time = duration;
+    if (!isEqual(run.distance, distance)) runUpdate.distance = distance;
+
+    const errorMessage = await updateRun(run.id, runUpdate);
     setLoad(false);
     if (!isEmpty(errorMessage)) {
       setError(errorMessage);
@@ -68,7 +77,7 @@ const EditRunModal = (props: IProps) => {
           {error}
         </div>
       )}
-      {isEmpty(fileUrl || run.url) ? (
+      {isEmpty(fileUrl) && updateImage ? (
         <div
           className="mx-auto mt-6 flex h-60 w-60 items-center justify-center rounded-full bg-gray-200 "
           {...getRootProps()}
@@ -92,7 +101,10 @@ const EditRunModal = (props: IProps) => {
               alt=""
             />
             <FontAwesomeIcon
-              onClick={() => setFileUrl('')}
+              onClick={() => {
+                setFileUrl('');
+                setUpdateImage(true);
+              }}
               icon={faCircleXmark}
               className="absolute -right-3 -top-3 rounded-full bg-white text-xl"
             />
@@ -127,10 +139,10 @@ const EditRunModal = (props: IProps) => {
           onChange={(e) => setDate(e.target.value)}
         />
       </label>
-      <div className="grid pt-6">
+      <div className="grid gap-2 pt-6">
         <button
           className="cursor-pointer rounded-md bg-blue-default py-3 font-bold text-white transition-all ease-in-out active:mx-1 active:bg-blue-dark disabled:cursor-not-allowed disabled:select-none disabled:bg-gray-400"
-          onClick={submitRun}
+          onClick={updateRunOnClick}
           disabled={load}
         >
           Send

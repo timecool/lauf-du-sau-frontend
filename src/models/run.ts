@@ -22,3 +22,10 @@ export interface IRunResponse {
   run: IRun;
   user: IUser;
 }
+
+export interface IUpdateRun {
+  file?: File;
+  date?: string;
+  time?: string;
+  distance?: string;
+}

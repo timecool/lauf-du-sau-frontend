@@ -1,7 +1,7 @@
 import type { AxiosResponse } from 'axios';
 import { isEmpty } from 'lodash';
 
-import type { IRun } from '@/models/run';
+import type { IRun, IUpdateRun } from '@/models/run';
 
 import { api } from '../api-client';
 
@@ -44,6 +44,27 @@ export const getMyRuns = async (month?: string) => {
   } catch (error: any) {
     return undefined;
   }
+};
+
+export const updateRun = async (runId: string, update: IUpdateRun) => {
+  try {
+    const formData = new FormData();
+    if (!isEmpty(update.file)) formData.append('file', update.file);
+    if (!isEmpty(update.date)) formData.append('date', update.date);
+    if (!isEmpty(update.time)) formData.append('time', update.time);
+    if (!isEmpty(update.distance)) formData.append('distance', update.distance);
+
+    await api.patch(`/user/run/${runId}`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  } catch (error: any) {
+    if (!isEmpty(error?.response?.data?.error))
+      return error.response.data.error;
+    return 'something is wrong :D';
+  }
+  return '';
 };
 
 export const deleteRun = async (id: string) => {

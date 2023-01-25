@@ -125,7 +125,6 @@ const AddRunModal = (props: IProps) => {
           type="date"
           placeholder="Date"
           value={date}
-          defaultValue={dayjs().format('YYYY-MM-DD')}
           onChange={(e) => setDate(e.target.value)}
         />
       </label>

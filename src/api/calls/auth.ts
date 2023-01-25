@@ -43,9 +43,8 @@ export const signUp = async (
 };
 
 export const logout = async () => {
-  const { setUser } = useAuthStore.getState();
   await api.delete('/user/logout');
-  setUser(undefined);
+  window.location.href = '/';
 };
 
 export const me = async (): Promise<IUser | undefined> => {
