@@ -29,3 +29,9 @@ export interface IUpdateRun {
   time?: string;
   distance?: string;
 }
+
+export interface IRunGroupByDay {
+  date: Date;
+  total: number;
+  runs: IRun[];
+}

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { isEqual } from 'lodash';
 
-const baseURL = 'http://localhost:8080/api/';
+const baseURL = 'https://0164-88-73-111-199.ngrok.io/api/';
 const version = 'v1';
 
 export const api = axios.create({

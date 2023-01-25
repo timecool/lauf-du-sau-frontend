@@ -1,7 +1,7 @@
 import type { AxiosResponse } from 'axios';
 import { isEmpty } from 'lodash';
 
-import type { IRun, IUpdateRun } from '@/models/run';
+import type { IRun, IRunGroupByDay, IUpdateRun } from '@/models/run';
 
 import { api } from '../api-client';
 
@@ -40,6 +40,20 @@ export const getMyRuns = async (month?: string) => {
     const response: AxiosResponse<IRun[]> = await api.get('/user/runs', {
       params: { month },
     });
+    return response.data;
+  } catch (error: any) {
+    return undefined;
+  }
+};
+
+export const getMyRunsGroupByDay = async (month?: string) => {
+  try {
+    const response: AxiosResponse<IRunGroupByDay[]> = await api.get(
+      '/user/runs/group',
+      {
+        params: { month },
+      }
+    );
     return response.data;
   } catch (error: any) {
     return undefined;
