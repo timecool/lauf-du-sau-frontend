@@ -14,7 +14,7 @@ export const updateUser = async (update: IUpdateUser) => {
     if (!isEmpty(update.username)) formData.append('username', update.username);
     if (!isEmpty(update.email)) formData.append('email', update.email);
 
-    const response = await api.post(`/user`, formData, {
+    const response = await api.patch(`/user`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -29,4 +29,8 @@ export const updateUser = async (update: IUpdateUser) => {
   return '';
 };
 
-export const deleteUserImage = async () => {};
+export const deleteUserImage = async () => {
+  const { setUser } = useAuthStore.getState();
+  const response = await api.delete(`/user/image`);
+  setUser(response.data.user);
+};

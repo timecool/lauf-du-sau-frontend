@@ -34,13 +34,17 @@ const ProfileEditModal = (props: IProps) => {
   }, []);
 
   const updateOnClick = async () => {
-    setLoad(true);
     const userUpdate: IUpdateUser = {};
-
     if (!isEmpty(user.image_url) && isEmpty(file)) deleteUserImage();
     if (!isEmpty(file)) userUpdate.file = file;
     if (!isEqual(user.email, email)) userUpdate.email = email;
     if (!isEqual(user.username, username)) userUpdate.username = username;
+
+    if (isEmpty(userUpdate)) {
+      setError('Nothing change');
+      return;
+    }
+    setLoad(true);
 
     const errorMessage = await updateUser(userUpdate);
     setLoad(false);
