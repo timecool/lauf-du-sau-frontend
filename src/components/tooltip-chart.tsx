@@ -35,7 +35,7 @@ const TooltipChart = (props: IProps) => {
   return (
     <div
       className={`${
-        opacity ? 'right-0' : 'right-[400px]'
+        opacity ? 'right-0' : 'right-[200vw]'
       } absolute h-80 w-full overflow-hidden  bg-red-500 transition-all`}
     >
       <p>{date.format('DD.MM.YYYY')}</p>

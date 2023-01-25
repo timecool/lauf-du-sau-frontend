@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { logout } from '@/api/calls/auth';
 import { getMyRuns, getMyRunsGroupByDay } from '@/api/calls/run';
 import { getTotal } from '@/api/calls/statistics';
-import LineChart from '@/components/line-chart';
+import BarChart from '@/components/bar-chart';
 import EditRunModal from '@/components/modals/edit-run-modal';
 import ProfileEditModal from '@/components/modals/profile-edit-modal';
 import ProfileImage from '@/components/profile-image';
@@ -86,7 +86,7 @@ const Index = () => {
       </div>
       <div className="text-center">Total: {total}</div>
 
-      <LineChart month={month} runs={groupRuns} />
+      <BarChart month={month} runs={groupRuns} />
       <div className="pt-10 pb-3 text-center text-xl">
         <input
           type="month"
