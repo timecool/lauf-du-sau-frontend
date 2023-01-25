@@ -16,5 +16,6 @@ api.interceptors.response.use(
       if (!isEqual(path, '/sign-up/') && !isEqual(path, '/'))
         window.location.href = '/';
     }
+    throw error;
   }
 );

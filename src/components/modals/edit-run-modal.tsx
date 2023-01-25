@@ -6,6 +6,7 @@ import { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 
 import { deleteRun, updateRun } from '@/api/calls/run';
+import { sameDay } from '@/helper/dates';
 import type { IRun, IUpdateRun } from '@/models/run';
 
 import InputWithDescription from '../input-with-description';
@@ -39,9 +40,10 @@ const EditRunModal = (props: IProps) => {
     const runUpdate: IUpdateRun = {};
 
     if (!isEmpty(file)) runUpdate.file = file;
-    if (!isEqual(run.date, new Date(date))) runUpdate.date = date;
-    if (!isEqual(run.time, duration)) runUpdate.time = duration;
-    if (!isEqual(run.distance, distance)) runUpdate.distance = distance;
+    if (!sameDay(new Date(run.date), new Date(date))) runUpdate.date = date;
+    if (!isEqual(run.time, parseFloat(duration))) runUpdate.time = duration;
+    if (!isEqual(run.distance, parseFloat(distance)))
+      runUpdate.distance = distance;
 
     const errorMessage = await updateRun(run.id, runUpdate);
     setLoad(false);

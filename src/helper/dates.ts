@@ -16,3 +16,11 @@ export const dateToString = (date: Date) => {
   }
   return givenDate;
 };
+
+export const sameDay = (d1: Date, d2: Date) => {
+  return (
+    isEqual(d1.getFullYear(), d2.getFullYear()) &&
+    isEqual(d1.getMonth(), d2.getMonth()) &&
+    isEqual(d1.getDate(), d2.getDate())
+  );
+};

@@ -11,3 +11,9 @@ export interface IUser {
   image_url: string;
   role: string;
 }
+
+export interface IUpdateUser {
+  file?: File;
+  email?: string;
+  username?: string;
+}
